@@ -1,3 +1,5 @@
+require 'bigdecimal'
+
 module Humanize
 
   # Accommodate for large numbers
@@ -32,7 +34,7 @@ module Humanize
       end
       o += sets.reverse.join(' ')
     end
-    if self.class == Float
+    if self.class == Float || self.class == BigDecimal
       decimals = self.to_s.split(/\./, 2).last
       decimals_as_words = case decimals_as
                           when :digits then decimals.scan(/./).map { |n| SUB_ONE_THOUSAND[locale][n.to_i] }.join(' ')

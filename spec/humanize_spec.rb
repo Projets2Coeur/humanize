@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'bigdecimal/util'
 
 describe "Humanize" do
   require_relative 'tests'
@@ -53,6 +54,11 @@ describe "Humanize" do
     it 'uses value passed as argument if given' do
       Humanize.config.decimals_as = :number
       expect(0.42.humanize(:decimals_as => :digits)).to eql('zero point four two')
+    end
+
+    it 'works with BigDecimal' do
+      Humanize.config.decimals_as = :number
+      expect(0.42.to_d.humanize).to eql('zero point forty-two')
     end
 
   end
