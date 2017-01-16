@@ -61,6 +61,11 @@ describe "Humanize" do
       expect(0.42.to_d.humanize).to eql('zero point forty-two')
     end
 
+    it 'does not append decimals if decimals equal zero' do
+      Humanize.config.decimals_as = :number
+      expect(42.to_d.humanize).to eql('forty-two')
+    end
+
   end
 
   describe 'both options work together' do
